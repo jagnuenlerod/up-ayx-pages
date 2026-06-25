@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ayx · 稳定功能页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8f6f1;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            color: #2e2a27;
+            line-height: 1.7;
+            padding: 2rem 1.5rem 4rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0 1.5rem;
+            border-bottom: 1px solid #e3ddd4;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+        }
+
+        .top-nav .logo {
+            font-weight: 500;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            color: #3a3530;
+        }
+
+        .top-nav .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            font-size: 0.95rem;
+        }
+
+        .top-nav .nav-links a {
+            color: #5b534c;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .top-nav .nav-links a:hover {
+            border-bottom-color: #9b8b7c;
+        }
+
+        /* 主要排版容器 */
+        .page-content {
+            margin-top: 2.5rem;
+        }
+
+        .hero-tag {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #9b8b7c;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-weight: 450;
+            font-size: 2.2rem;
+            line-height: 1.25;
+            color: #2a2520;
+            margin-bottom: 0.8rem;
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            color: #4f4841;
+            max-width: 42rem;
+            margin-bottom: 2.2rem;
+        }
+
+        /* 引用 / 提示框 */
+        .notice-box {
+            background: #eeebe6;
+            border-left: 4px solid #b8a99a;
+            padding: 1.2rem 1.6rem;
+            border-radius: 0 6px 6px 0;
+            margin: 2rem 0 2.5rem;
+            font-size: 0.98rem;
+            color: #3e3934;
+        }
+
+        .notice-box strong {
+            font-weight: 600;
+            color: #2e2924;
+        }
+
+        /* 三个场景卡片 呈现为紧凑列表 */
+        .scene-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin: 2.8rem 0 2.5rem;
+        }
+
+        .scene-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem 1.8rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.03);
+            border: 1px solid #e9e2da;
+        }
+
+        .scene-item h3 {
+            font-weight: 450;
+            font-size: 1.25rem;
+            color: #3a332e;
+            margin-bottom: 0.4rem;
+        }
+
+        .scene-item p {
+            font-size: 0.98rem;
+            color: #4e4740;
+            margin-top: 0.3rem;
+        }
+
+        .scene-item .scene-meta {
+            display: inline-block;
+            margin-top: 0.7rem;
+            font-size: 0.85rem;
+            color: #877b6f;
+            border-bottom: 1px dotted #d6cdc2;
+        }
+
+        /* 说明 / FAQ 摘要 */
+        .faq-summary {
+            margin: 2.2rem 0;
+        }
+
+        .faq-summary details {
+            border-bottom: 1px solid #e0d8cf;
+            padding: 0.8rem 0;
+        }
+
+        .faq-summary details:first-of-type {
+            border-top: 1px solid #e0d8cf;
+        }
+
+        .faq-summary summary {
+            font-weight: 500;
+            color: #3c3530;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            font-size: 1rem;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-summary summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-summary summary::before {
+            content: "▹";
+            color: #b3a392;
+            margin-right: 0.6rem;
+            font-size: 1.1rem;
+        }
+
+        .faq-summary details[open] summary::before {
+            content: "▾";
+        }
+
+        .faq-summary .answer {
+            padding: 0.4rem 0 0.6rem 1.6rem;
+            color: #4e4740;
+            font-size: 0.95rem;
+        }
+
+        .faq-summary .answer a {
+            color: #5b6f5c;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #c5bcb0;
+        }
+
+        .faq-summary .answer a:hover {
+            text-decoration-color: #7f6f5e;
+        }
+
+        /* 内联链接样式（用于自然句子中的 ayx） */
+        .inline-link {
+            color: #3d5a3e;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #c7bcae;
+            font-weight: 450;
+            transition: text-decoration-color 0.2s;
+        }
+
+        .inline-link:hover {
+            text-decoration-color: #6b5f51;
+        }
+
+        /* 页面底部的安静标注 */
+        .page-footer {
+            margin-top: 3.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e3ddd4;
+            font-size: 0.85rem;
+            color: #877b6f;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .page-footer a {
+            color: #5b534c;
+            text-decoration: none;
+            border-bottom: 1px solid #d6cdc2;
+        }
+
+        .page-footer a:hover {
+            border-bottom-color: #7f6f5e;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 1.25rem 1rem 3rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .top-nav .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+            }
+            .scene-item {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <span class="logo">ayx</span>
+        <div class="nav-links">
+            <a href="#scene">场景</a>
+            <a href="#faq">说明</a>
+        </div>
+    </nav>
+
+    <div class="page-content">
+
+        <div class="hero-tag">稳定访问 · 基础信息</div>
+
+        <h1>关于 ayx 的简单说明</h1>
+        <p class="subhead">
+            这是一个归纳了常用功能入口与使用背景的页面。我们不堆砌功能列表，只是把一些值得了解的细节整理出来。
+        </p>
+
+        <!-- 引用块 / 提示框 -->
+        <div class="notice-box">
+            <strong>提示</strong> —— 本文档围绕 <a href="https://up-ayx.com.cn" class="inline-link">ayx</a> 的结构与使用场景展开，内容均基于日常可验证的信息。如果你对某个模块有疑问，可以先阅读下方的常见说明。
+        </div>
+
+        <!-- 三个场景模块（轻量卡片） -->
+        <div class="scene-grid" id="scene">
+            <div class="scene-item">
+                <h3>基本导航与首页结构</h3>
+                <p>
+                    进入 <a href="https://up-ayx.com.cn" class="inline-link">ayx</a> 后，首先看到的是一个经过整理的导航布局，顶部区域提供了主要功能入口，首页内容围绕常用功能模块进行组织。页面的信息层级比较清楚，适合快速定位到目标区域。
+                </p>
+                <span class="scene-meta">布局参考 · 分区明确</span>
+            </div>
+
+            <div class="scene-item">
+                <h3>常用功能分区</h3>
+                <p>
+                    在 <a href="https://up-ayx.com.cn" class="inline-link">ayx</a> 中，功能通常按照使用频率或逻辑关系划分为若干区块，例如核心操作区、数据浏览区以及辅助工具区。每个区块都有对应的标题与简要说明，降低重复查找的成本。
+                </p>
+                <span class="scene-meta">分区组织 · 降低认知负担</span>
+            </div>
+
+            <div class="scene-item">
+                <h3>辅助信息与状态说明</h3>
+                <p>
+                    除了主要功能，<a href="https://up-ayx.com.cn" class="inline-link">ayx</a> 的页面底部和侧边区域会放置一些状态提示或使用建议，例如当前网络状态、版本备注或常见操作指引。这些内容虽然不显眼，但在需要时能快速提供参考。
+                </p>
+                <span class="scene-meta">细节辅助 · 安静地提供上下文</span>
+            </div>
+        </div>
+
+        <!-- 常见说明（FAQ 摘要形式） -->
+        <div class="faq-summary" id="faq">
+            <details>
+                <summary>ayx 的页面入口是否固定？</summary>
+                <div class="answer">
+                    主站地址为 <a href="https://up-ayx.com.cn">ayx</a>，目前结构相对稳定。如果遇到无法连接的情况，可以先检查本地网络或域名解析状态。我们不建议通过非官方渠道获取地址。
+                </div>
+            </details>
+            <details>
+                <summary>页面上的信息多久更新一次？</summary>
+                <div class="answer">
+                    通常情况下，<a href="https://up-ayx.com.cn" class="inline-link">ayx</a> 的功能模块会跟随使用反馈进行调整，但导航结构不会频繁变化。具体更新频率以页面实际显示为准。
+                </div>
+            </details>
+            <details>
+                <summary>我是否需要注册才能使用？</summary>
+                <div class="answer">
+                    部分功能可能需要账户身份验证，但基础浏览与信息查阅一般不需要额外注册。详细情况可以在对应页面查看提示。
+                </div>
+            </details>
+        </div>
+
+        <!-- 一段安静的说明文字，再次嵌入链接 -->
+        <p style="margin-top: 2rem; font-size: 0.96rem; color: #4f4841;">
+            如果你希望进一步了解 <a href="https://up-ayx.com.cn" class="inline-link">ayx</a> 的更多细节，可以直接在浏览器中打开对应页面，查阅那里的说明文字与界面提示。本文仅作为一份轻量的结构参考。
+        </p>
+
+    </div>
+
+    <footer class="page-footer">
+        <span>内容整理 · 稳定参考</span>
+        <span><a href="https://up-ayx.com.cn">ayx</a></span>
+    </footer>
+
+</body>
+</html>
