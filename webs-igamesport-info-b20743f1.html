@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>爱游戏体育 · 简明指南与场景卡片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f5f8fb;
+            color: #1e2a3a;
+            line-height: 1.6;
+            padding: 24px 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* 主视觉 —— 蓝绿色调 */
+        .hero {
+            background: linear-gradient(145deg, #e2f0ee 0%, #d3e9e4 100%);
+            border-radius: 40px;
+            padding: 36px 28px 44px;
+            margin-bottom: 40px;
+            box-shadow: 0 12px 28px -12px rgba(0, 100, 90, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 150, 130, 0.08);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0c3e3a;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #1b5c55;
+            max-width: 580px;
+            margin-bottom: 20px;
+            font-weight: 450;
+        }
+
+        .hero .meta-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(2px);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #1a6b62;
+            border: 1px solid rgba(0, 130, 115, 0.15);
+        }
+
+        /* 网格卡片 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin: 32px 0 40px;
+        }
+
+        @media (min-width: 520px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 820px) {
+            .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 24px 20px 22px;
+            box-shadow: 0 4px 14px rgba(0, 60, 50, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            border-left: 4px solid #2a9d8f;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px -8px rgba(30, 100, 90, 0.14);
+        }
+
+        .card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+            display: block;
+            color: #2a9d8f;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0a2f2a;
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2b4040;
+            margin-bottom: 4px;
+        }
+
+        .card .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            background: #e1f0ed;
+            color: #14655a;
+            padding: 2px 12px;
+            border-radius: 30px;
+            margin-top: 6px;
+        }
+
+        /* 适合人群 + 自然段落 */
+        .section-block {
+            background: white;
+            border-radius: 32px;
+            padding: 28px 24px;
+            margin: 20px 0 30px;
+            box-shadow: 0 4px 16px rgba(0, 50, 45, 0.04);
+        }
+
+        .section-block h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0a423b;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-block h2::before {
+            content: '▹';
+            color: #2a9d8f;
+            font-size: 1.6rem;
+        }
+
+        .audience-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            margin: 12px 0 8px;
+        }
+
+        .audience-item {
+            background: #f0f7f5;
+            border-radius: 50px;
+            padding: 6px 18px;
+            font-size: 0.9rem;
+            color: #1b5a52;
+            border: 1px solid #cde3de;
+        }
+
+        .link-sentence {
+            font-size: 1rem;
+            color: #1d3732;
+            background: #f2faf8;
+            padding: 20px 22px;
+            border-radius: 24px;
+            margin: 28px 0 10px;
+            border-left: 5px solid #2a9d8f;
+            line-height: 1.7;
+        }
+
+        .link-sentence a {
+            color: #0f6d60;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid #b3d9d2;
+            transition: border-color 0.2s;
+        }
+
+        .link-sentence a:hover {
+            border-bottom-color: #2a9d8f;
+        }
+
+        .faq-mini {
+            background: white;
+            border-radius: 30px;
+            padding: 24px 22px;
+            margin-top: 20px;
+            box-shadow: 0 2px 12px rgba(0, 60, 50, 0.04);
+        }
+
+        .faq-mini details {
+            border-bottom: 1px solid #e6efec;
+            padding: 14px 0;
+        }
+
+        .faq-mini details:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            color: #0b423b;
+            cursor: pointer;
+            font-size: 0.96rem;
+            padding: 2px 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .faq-mini summary::before {
+            content: '↗';
+            color: #2a9d8f;
+            font-size: 1rem;
+            margin-right: 4px;
+        }
+
+        .faq-mini details p {
+            margin: 12px 0 4px 18px;
+            font-size: 0.9rem;
+            color: #2f4b47;
+            border-left: 2px solid #cce3de;
+            padding-left: 16px;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.82rem;
+            color: #6c8a84;
+            padding: 32px 0 12px;
+            border-top: 1px solid #d6e5e0;
+            margin-top: 20px;
+        }
+
+        .badge-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #2a9d8f;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dae9e4;
+            margin: 14px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- hero 主视觉 / 简明指南切入 -->
+        <header class="hero">
+            <h1>爱游戏体育 · 简明方向指南</h1>
+            <p class="sub">从信息获取到日常浏览，围绕体育与游戏交织的场景，整理一份清晰的使用卡片与提醒。</p>
+            <span class="meta-tag">📌 2025 · 用途卡片 · 人群速览</span>
+        </header>
+
+        <!-- 信息卡片网格：用途卡片 -->
+        <div class="card-grid">
+            <div class="card">
+                <span class="icon">🏅</span>
+                <h3>赛事动态聚合</h3>
+                <p>集中浏览体育赛事比分、赛程、队伍数据，适合快速追踪多项联赛变动。</p>
+                <span class="tag">实时</span>
+            </div>
+            <div class="card">
+                <span class="icon">🎮</span>
+                <h3>游戏资讯专区</h3>
+                <p>提供电竞与体育模拟类游戏更新、版本说明及活动提醒，保持信息同步。</p>
+                <span class="tag">资讯</span>
+            </div>
+            <div class="card">
+                <span class="icon">🧭</span>
+                <h3>导航与分类入口</h3>
+                <p>按照运动项目、赛事类型、游戏分区整理栏目结构，缩短查找路径。</p>
+                <span class="tag">结构</span>
+            </div>
+            <div class="card">
+                <span class="icon">📋</span>
+                <h3>活动与提醒</h3>
+                <p>部分限时活动、挑战任务会通过平台内公告展示，注意查阅更新区域。</p>
+                <span class="tag">限时</span>
+            </div>
+            <div class="card">
+                <span class="icon">🔐</span>
+                <h3>账号安全提示</h3>
+                <p>建议使用独立密码并定期更换，避免在公共设备上保持登录状态。</p>
+                <span class="tag">安全</span>
+            </div>
+            <div class="card">
+                <span class="icon">📱</span>
+                <h3>移动端适配</h3>
+                <p>页面针对手机屏幕做了响应式调整，浏览器内即可获得卡片式浏览体验。</p>
+                <span class="tag">响应</span>
+            </div>
+        </div>
+
+        <!-- 适合人群 + 自然链接段落 -->
+        <div class="section-block">
+            <h2>适合哪些人了解</h2>
+            <div class="audience-list">
+                <span class="audience-item">⚽ 体育赛事关注者</span>
+                <span class="audience-item">🎲 游戏内容探索者</span>
+                <span class="audience-item">📊 数据查阅习惯用户</span>
+                <span class="audience-item">🧩 多栏目浏览者</span>
+                <span class="audience-item">📆 活动提醒需要者</span>
+            </div>
+            <p style="margin-top: 18px; color: #1f4842;">
+                无论你是定期查看联赛积分，还是对体育类游戏内容抱有兴趣，都可以找到对应的信息分区。 
+                平台结构偏向信息整合，栏目划分以运动项目和游戏类型为基础。初次使用时可先了解导航分类，再根据兴趣深入。
+            </p>
+        </div>
+
+        <!-- 自然段落 + 嵌入式链接 (严格文本) -->
+        <div class="link-sentence">
+            <span class="badge-dot"></span> 
+            如果你希望直接浏览平台的整体栏目与动态，可以前往 
+            <a href="https://webs-igamesport.com">爱游戏体育</a> 
+            查看最新的分类与内容结构。页面采用卡片式布局，方便在手机与桌面间切换阅读。
+        </div>
+
+        <!-- 访问提醒 + 简短 FAQ 摘要 -->
+        <div class="faq-mini">
+            <details>
+                <summary>访问前需要准备什么？</summary>
+                <p>稳定的网络环境即可。建议使用主流浏览器（Chrome、Safari、Edge）以获得完整响应式体验。无需额外插件。</p>
+            </details>
+            <details>
+                <summary>信息更新频率如何？</summary>
+                <p>赛事数据与游戏资讯跟随官方更新节奏，通常比赛日或版本发布后会有内容刷新。活动提醒以平台内公告为准。</p>
+            </details>
+            <details>
+                <summary>是否支持移动端直接浏览？</summary>
+                <p>页面已适配移动端，卡片和导航会自动调整排列。你也可以横屏或竖屏切换，布局均能自适应。</p>
+            </details>
+            <details>
+                <summary>有没有使用上的注意事项？</summary>
+                <p>注意核对栏目分类，部分内容可能按区域或时段显示。账号安全方面建议开启双重验证（如平台支持）。</p>
+            </details>
+        </div>
+
+        <!-- 收尾 自然段落 -->
+        <div style="margin-top: 30px; padding: 8px 0 2px;">
+            <p style="font-size: 0.95rem; color: #2a554e; background: #eaf3f0; border-radius: 30px; padding: 14px 20px;">
+                💡 以上卡片与提醒均基于平台现有结构整理。随着内容调整，部分分类名称与活动入口可能发生变化，以实际页面为准。
+            </p>
+        </div>
+
+        <div class="footer-note">
+            <span>爱游戏体育 · 信息卡片式介绍</span> 
+            <span style="display: inline-block; margin: 0 10px;">·</span> 
+            <span>简明指南与访问提醒</span>
+        </div>
+    </div>
+</body>
+</html>
